@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mama's Ride GEF Kickoff</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+/* Layout: one navy parallax hero, then three calm sections (Monday, Wednesday, next month) */
+:root{
+  --navy:#1E293B; --navy-deep:#0F172A; --navy-light:#334155;
+  --teal:#0E7490; --teal-bright:#1597B5;
+  --coral:#F97360; --coral-dark:#E45C48;
+  --sun:#FBBF24; --sun-dark:#F59E0B;
+  --bg:#F8FAFC; --bg-alt:#EAF0F3; --card:#FFFFFF; --line:#E5E7EB;
+  --fg:#1E293B; --muted:#475569; --soft:#64748B;
+  --teal-tint:#E0F2F6; --coral-tint:#FEECE8; --sun-tint:#FEF6DD;
+  --font:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F172A; --bg-alt:#132033; --card:#1A2638; --line:#2B3A50;
+  --fg:#E8EEF4; --muted:#B4C0CE; --soft:#8D9CB0; --teal:#1597B5;
+  --teal-tint:#123445; --coral-tint:#3A2420; --sun-tint:#3A3018; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F172A; --bg-alt:#132033; --card:#1A2638; --line:#2B3A50;
+  --fg:#E8EEF4; --muted:#B4C0CE; --soft:#8D9CB0; --teal:#1597B5;
+  --teal-tint:#123445; --coral-tint:#3A2420; --sun-tint:#3A3018; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{text-wrap:balance;line-height:1.15;margin:0}
+p{margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--navy);color:#F8FAFC}
+.hero .wrap{position:relative;z-index:3;padding-block:72px 64px;display:grid;gap:36px}
+.layer{position:absolute;pointer-events:none;will-change:transform}
+.l-sun{width:400px;height:400px;border-radius:50%;background:var(--sun);opacity:.14;top:-140px;right:-100px}
+.l-coral{width:200px;height:200px;border-radius:50%;background:var(--coral);opacity:.16;bottom:-70px;left:6%}
+.l-road{left:-5%;right:-5%;bottom:30px;height:110px;z-index:1}
+.l-road svg{width:100%;height:100%}
+.date{font-size:15px;font-weight:600;color:var(--sun)}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:700;max-width:15ch;margin-top:10px}
+.hero h1 span{color:var(--teal-bright)}
+.hero .lede{font-size:clamp(17px,2vw,20px);color:#CBD5E1;max-width:52ch;margin-top:16px}
+.hero .lede b{color:#fff}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.day{display:flex;gap:16px;align-items:center;background:#F8FAFC;color:var(--navy);border-radius:16px;padding:18px 20px;text-decoration:none;transition:transform .25s}
+.day:hover,.day:focus-visible{transform:translateY(-4px);outline:none;box-shadow:0 0 0 3px var(--sun)}
+.cal{flex:none;width:60px;border-radius:10px;overflow:hidden;text-align:center;border:1px solid #E5E7EB;background:#fff}
+.cal i{display:block;font-style:normal;font-size:12px;font-weight:600;color:#fff;background:var(--teal);padding:3px 0}
+.cal strong{display:block;font-size:24px;padding:3px 0}
+.day.wed .cal i{background:var(--coral-dark)}
+.day h3{font-size:18px}
+.day p{font-size:14px;color:#475569}
+
+/* sections */
+section.band{padding-block:80px}
+section.alt{background:var(--bg-alt)}
+.head{display:grid;gap:10px;margin-bottom:32px}
+.tag{justify-self:start;font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--teal-tint);color:var(--teal)}
+.tag.coral{background:var(--coral-tint);color:var(--coral-dark)}
+.tag.sun{background:var(--sun-tint);color:var(--sun-dark)}
+h2{font-size:clamp(28px,4vw,40px)}
+.head p{color:var(--muted)}
+
+/* Monday list */
+.list{display:grid;gap:12px}
+.item{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.n{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--teal);color:#fff;font-weight:700;font-size:18px}
+.item h3{font-size:18px}
+.item p{font-size:15px;color:var(--muted);margin-top:2px}
+.who{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bg-alt);color:var(--muted);white-space:nowrap}
+.needs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.needs span{font-size:13px;padding:2px 10px;border-radius:999px;background:var(--coral-tint);color:var(--coral-dark)}
+
+/* bars */
+.chart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-top:20px}
+.chart h3{font-size:17px;margin-bottom:16px}
+.bars{display:grid;gap:14px}
+.bar{display:grid;grid-template-columns:140px 1fr 56px;gap:12px;align-items:center;font-size:15px}
+.bar .lab{color:var(--muted)}
+.bar .t{height:24px;background:var(--bg-alt);border-radius:8px;overflow:hidden;position:relative}
+.bar .f{position:absolute;top:0;bottom:0;left:0;border-radius:8px;transform-origin:left}
+.bar .f.ghost{opacity:.3}
+.bar .v{font-weight:700;text-align:right}
+
+/* Wednesday targets */
+.targets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tgt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:6px;align-content:start}
+.tgt b{font-size:40px;line-height:1.1;font-weight:700}
+.tgt:nth-child(1) b{color:var(--teal)} .tgt:nth-child(2) b{color:var(--coral-dark)} .tgt:nth-child(3) b{color:var(--sun-dark)} .tgt:nth-child(4) b{color:var(--navy-light)}
+:root[data-theme="dark"] .tgt:nth-child(4) b{color:#CBD5E1}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tgt:nth-child(4) b{color:#CBD5E1}}
+.tgt span{font-size:15px;color:var(--muted)}
+.partners{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.partners span{font-size:15px;font-weight:600;padding:8px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.partners span.done{background:var(--teal);border-color:var(--teal);color:#fff}
+.partners span.done::before{content:"✓ "}
+.partners span.open{border-style:dashed;color:var(--muted)}
+.plegend{display:flex;gap:16px;margin-top:12px;font-size:13px;color:var(--muted)}
+.plegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.plegend i.d{background:var(--teal)} .plegend i.o{border:2px dashed var(--soft)}
+.bar .v{white-space:nowrap}
+
+/* ready check explainer */
+.explain{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.box{border-radius:16px;padding:20px 22px}
+.box.what{background:var(--sun-tint)}
+.box h3{font-size:17px;margin-bottom:8px}
+.checks{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.checks li{display:flex;gap:10px;align-items:center;font-size:15px}
+.checks li::before{content:"";flex:none;width:18px;height:18px;border-radius:5px;border:2px solid var(--sun-dark)}
+.outcome{display:grid;gap:10px}
+.outcome div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:15px}
+.outcome strong{color:var(--teal)}
+.outcome .no strong{color:var(--coral-dark)}
+
+/* timeline */
+.tl{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:120px 28px 1fr;gap:12px;align-items:start}
+.tl .when{font-weight:600;font-size:15px;text-align:right;padding-top:2px}
+.tl .dot{position:relative;align-self:stretch;display:flex;justify-content:center}
+.tl .dot::before{content:"";position:absolute;top:0;bottom:0;width:3px;background:var(--line)}
+.tl li:first-child .dot::before{top:10px}
+.tl li:last-child .dot::before{bottom:auto;height:10px}
+.tl .dot i{position:relative;margin-top:5px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--teal)}
+.tl li.big .dot i{background:var(--sun);border-color:var(--sun-dark);width:20px;height:20px;margin-top:3px}
+.tl li.now .dot i{background:var(--teal)}
+.tl .what{padding-bottom:22px;font-size:16px;color:var(--muted)}
+.tl .what b{display:block;color:var(--fg)}
+
+footer{background:var(--navy-deep);color:#94A3B8;font-size:14px}
+footer .wrap{padding-block:28px}
+
+/* motion: content visible at rest, motion only replays */
+.grow.in .f{animation:gx 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes gx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:760px){
+  .targets{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .explain{grid-template-columns:1fr}
+  .item{grid-template-columns:40px 1fr}
+  .item .who{grid-column:2;justify-self:start}
+  .bar{grid-template-columns:100px 1fr 48px}
+  .tl li{grid-template-columns:84px 24px 1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.grow.in .f{animation:none}.layer{transform:none!important}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="layer l-sun" data-speed="0.35"></div>
+  <div class="layer l-coral" data-speed="-0.2"></div>
+  <div class="layer l-road" data-speed="0.08" aria-hidden="true">
+    <svg viewBox="0 0 1200 110" preserveAspectRatio="none">
+      <path d="M0 80 C 250 25, 450 110, 700 60 S 1050 15, 1200 55" stroke="#334155" stroke-width="32" fill="none"/>
+      <path id="roadline" d="M0 80 C 250 25, 450 110, 700 60 S 1050 15, 1200 55" stroke="#FBBF24" stroke-width="3" stroke-dasharray="22 18" fill="none"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div>
+      <p class="date">Mama's Ride · Monday 19 October 2026</p>
+      <h1>GEF is coming. <span>We start now.</span></h1>
+      <p class="lede">Reham is in the GEF 2026 program. The festival is on <b>6 to 8 November</b>, that is <b class="num" id="d-gef">18</b> <b>days</b> away. This week we meet twice.</p>
+    </div>
+    <div class="days">
+      <a class="day" href="#monday">
+        <div class="cal"><i>Mon</i><strong class="num">19</strong></div>
+        <div><h3>1. Preparation and collecting data</h3><p>Get everything ready</p></div>
+      </a>
+      <a class="day wed" href="#wednesday">
+        <div class="cal"><i>Wed</i><strong class="num">21</strong></div>
+        <div><h3>2. Target and action plan</h3><p>Decide next month</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="monday">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag">Monday 19 October</span>
+      <h2>Preparation and collecting data</h2>
+    </div>
+    <div class="list">
+      <div class="item">
+        <span class="n">1</span>
+        <div><h3>List and prioritise Reham's network</h3><p>Who we talk to first, ranked A / B / C.</p></div>
+        <span class="who">Reham + Inas</span>
+      </div>
+      <div class="item">
+        <span class="n">2</span>
+        <div><h3>Create the social media channels</h3><p>TikTok, Facebook, Instagram. We need:</p>
+          <div class="needs"><span>Email for marketing</span><span>Phone number</span><span>Branding guidelines</span></div></div>
+        <span class="who">WAI-S + Amer</span>
+      </div>
+      <div class="item">
+        <span class="n">3</span>
+        <div><h3>Test the app</h3><p>Make sure it works well from booking to drop-off.</p></div>
+        <span class="who">Mama's Ride</span>
+      </div>
+      <div class="item">
+        <span class="n">4</span>
+        <div><h3>Action plan calendar for next month</h3><p>Every task with a date and an owner.</p></div>
+        <span class="who">WAI-S &amp; Mama's Ride</span>
+      </div>
+      <div class="item">
+        <span class="n">5</span>
+        <div><h3>PR plan</h3><p>Built on the marketing plan, so PR supports every step.</p></div>
+        <span class="who">Reham</span>
+      </div>
+      <div class="item">
+        <span class="n">6</span>
+        <div><h3>Prepare the GEF pitch</h3><p>The pitch deck and Reham's story, ready for the live pitch on 6 to 8 November.</p></div>
+        <span class="who">Reham &amp; WAI-S</span>
+      </div>
+    </div>
+
+    <div class="chart grow">
+      <h3>Reham's network so far</h3>
+      <div class="bars">
+        <div class="bar"><span class="lab">A-list mothers</span><div class="t"><div class="f" style="width:82%;background:var(--teal)"></div></div><span class="v num">9</span></div>
+        <div class="bar"><span class="lab">B-list mothers</span><div class="t"><div class="f" style="width:100%;background:var(--teal-bright)"></div></div><span class="v num">11</span></div>
+        <div class="bar"><span class="lab">Communities</span><div class="t"><div class="f" style="width:73%;background:var(--coral)"></div></div><span class="v num">8</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="wednesday">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag coral">Wednesday 21 October</span>
+      <h2>Target for next month</h2>
+    </div>
+    <div class="targets">
+      <div class="tgt"><b class="num">3–5</b><span>Communities to connect with</span></div>
+      <div class="tgt"><b class="num">2 or 1</b><span>2 meetups or 1 big gathering to announce the movement and hire mom captains</span></div>
+      <div class="tgt"><b class="num">10–15</b><span>Rides filmed with reviews</span></div>
+      <div class="tgt"><b class="num">2 / 4</b><span>Partnerships done</span></div>
+    </div>
+
+    <div class="chart grow">
+      <h3>From zero to target</h3>
+      <div class="bars">
+        <div class="bar"><span class="lab">Communities</span><div class="t"><div class="f ghost" style="width:100%;background:var(--teal)"></div><div class="f" style="width:60%;background:var(--teal)"></div></div><span class="v num">3–5</span></div>
+        <div class="bar"><span class="lab">Meetups / gatherings</span><div class="t"><div class="f" style="width:100%;background:var(--coral)"></div></div><span class="v num">2</span></div>
+        <div class="bar"><span class="lab">Filmed rides</span><div class="t"><div class="f ghost" style="width:100%;background:var(--sun-dark)"></div><div class="f" style="width:67%;background:var(--sun-dark)"></div></div><span class="v num">10–15</span></div>
+      </div>
+    </div>
+
+    <div class="chart grow">
+      <h3>Partnerships</h3>
+      <div class="bars">
+        <div class="bar"><span class="lab">Done</span><div class="t"><div class="f ghost" style="width:100%;background:var(--teal)"></div><div class="f" style="width:50%;background:var(--teal)"></div></div><span class="v num">2 of 4</span></div>
+      </div>
+      <div class="partners">
+        <span class="done">بنك ناصر</span><span class="done">وزارة التضامن</span><span class="open">57357</span><span class="open">شرطة النجدة</span>
+      </div>
+      <div class="plegend"><span><i class="d"></i>Done</span><span><i class="o"></i>Still in progress</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="month">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag sun">Next month</span>
+      <h2>Key dates</h2>
+    </div>
+    <ul class="tl">
+      <li class="now"><span class="when">Mon 19 Oct</span><span class="dot"><i></i></span><div class="what"><b>Preparation meeting</b>EIP orientation tonight, 7 to 8 PM</div></li>
+      <li><span class="when">Wed 21 Oct</span><span class="dot"><i></i></span><div class="what"><b>Targets and plan decided</b>Channels go live</div></li>
+      <li><span class="when">Mon 26 Oct</span><span class="dot"><i></i></span><div class="what"><b>First rides with Reham's A-list mothers</b>Filming starts</div></li>
+      <li><span class="when">From the first meetup</span><span class="dot"><i></i></span><div class="what"><b>Launch starts with the communities</b>First gathering announces the movement and opens hiring for mom captains</div></li>
+      <li class="big"><span class="when">6 to 8 Nov</span><span class="dot"><i></i></span><div class="what"><b>GEF 2026 · the end of this plan</b>Live pitch, winners on 8 November</div></li>
+      <li><span class="when">After GEF</span><span class="dot"><i></i></span><div class="what"><b>Decide the next move</b>Based on what happened at GEF and the feedback we got</div></li>
+    </ul>
+
+    <div class="explain">
+      <div class="box what">
+        <h3>Our checks: every Monday and Wednesday</h3>
+        <ul class="checks">
+          <li>Communities we connected with</li>
+          <li>Meetups and gatherings: announcing the movement and hiring mom captains</li>
+          <li>Rides filmed with reviews</li>
+          <li>Partnerships progress</li>
+        </ul>
+      </div>
+      <div class="outcome">
+        <div><strong>On track:</strong> we keep the plan and move to the next step.</div>
+        <div class="no"><strong>Behind:</strong> we agree the fix, the owner and the new date in the same meeting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Mama's Ride · Mothers Trust Mothers · WAI-Solutions · 19 October 2026</div></footer>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var now=new Date(), gef=new Date(2026,10,6);
+  var d=Math.max(0,Math.round((Date.UTC(2026,10,6)-Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()))/864e5));
+  document.getElementById('d-gef').textContent=d;
+
+  if(reduce) return;
+  var layers=[].slice.call(document.querySelectorAll('.layer')), road=document.getElementById('roadline'), ticking=false;
+  function frame(){
+    var y=window.scrollY;
+    layers.forEach(function(l){l.style.transform='translate3d(0,'+(y*(parseFloat(l.dataset.speed)||0)).toFixed(1)+'px,0)';});
+    road.style.strokeDashoffset=(-y*0.6).toFixed(0);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.3});
+    [].slice.call(document.querySelectorAll('.grow')).forEach(function(el){if(el.getBoundingClientRect().top>innerHeight) io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>
